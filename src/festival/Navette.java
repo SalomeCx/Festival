@@ -1,8 +1,16 @@
 package festival;
 
+/**
+ * 
+ * @author NATTA & COAVOUX
+ *
+ */
 public class Navette extends Thread{
+	// Le nombre de places libres dans la navette.
 	public int nbPlaces;
+	// Le numero de la navette (son identifiant).
 	public int nNavette;
+	// La liste des sites a parcourir.
 	public Site[] tSite;
 	
 	public Navette(int np, int nn, Site[] t) {

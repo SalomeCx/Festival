@@ -1,7 +1,14 @@
 package festival;
 
+/**
+ * 
+ * @author NATTA & COAVOUX
+ *
+ */
 public class Festivalier extends Thread {
+	// L'identifiant du festivalier.
 	public int nFest;
+	// Le site de depart du festivalier.
 	public Site depart;
 	
 	public Festivalier(int n, Site d) {
@@ -14,7 +21,6 @@ public class Festivalier extends Thread {
 		try {
 			sleep(500);
 		} catch (Exception e) {}
-		
 		depart.guichet.prendrePlace();
 		
 		if (depart.nSite != (Festival.nSites - 1)) {
@@ -22,11 +28,7 @@ public class Festivalier extends Thread {
 			synchronized(depart.arret) {
 				depart.arret.nAttente++;
 			}
-		}
-		
-		
-			
-		
+		}	
 	}
 
 }
