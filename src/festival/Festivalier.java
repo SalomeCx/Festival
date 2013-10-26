@@ -8,7 +8,7 @@ package festival;
 public class Festivalier extends Thread {
 	// L'identifiant du festivalier.
 	public int nFest;
-	// Le site de depart du festivalier.
+	// Le site de départ du festivalier.
 	public Site depart;
 	
 	public Festivalier(int n, Site d) {
@@ -17,18 +17,16 @@ public class Festivalier extends Thread {
 	}
 	
 	public void run() {
+
+		depart.guichet.prendrePlace();
 		// Simuler le temps de prendre une place
 		try {
-			sleep(500);
+			sleep(100);
 		} catch (Exception e) {}
-		depart.guichet.prendrePlace();
-		
+	
 		if (depart.nSite != (Festival.nSites - 1)) {
-			// Attendre la navette.
-			synchronized(depart.arret) {
-				depart.arret.nAttente++;
-			}
-		}	
+			depart.arret.attendreNavette();
+		}		
 	}
 
 }

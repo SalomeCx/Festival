@@ -6,7 +6,7 @@ package festival;
  *
  */
 public class Guichet {
-	// Le numero du guichet, c'est-a-dire le numero du site sur lequel il est.
+	// Le numero du guichet, c'est-à-dire le numéro du site sur lequel il est.
 	public int nGuichet;
 	// Le nombre de places vendues par le guichet.
 	public int nPlacesVendues;
@@ -18,7 +18,7 @@ public class Guichet {
 	
 	/**
 	 * Simuler le fait de vendre des places.
-	 * Appele par les festivaliers.
+	 * Appelé par les festivaliers.
 	 */
 	public synchronized void prendrePlace() {
 		nPlacesVendues++;

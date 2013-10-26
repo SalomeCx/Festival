@@ -8,9 +8,9 @@ package festival;
 public class Navette extends Thread{
 	// Le nombre de places libres dans la navette.
 	public int nbPlaces;
-	// Le numero de la navette (son identifiant).
+	// Le numéro de la navette (son identifiant).
 	public int nNavette;
-	// La liste des sites a parcourir.
+	// La liste des sites à parcourir.
 	public Site[] tSite;
 	
 	public Navette(int np, int nn, Site[] t) {
@@ -21,43 +21,35 @@ public class Navette extends Thread{
 	
 	public void run()
 	{
-		int n = 0;
+		// Chaque navette commence à un site aléatoire.
+		int n = (int) (Math.random() * Festival.nSites);
+		
 		while (true)
 		{
 			if (n != (Festival.nSites - 1)) {
-				int i = nbPlaces;
-				int j = tSite[n].arret.emmener(i);
-				System.out.println("La navette " + nNavette + " prend " + (nbPlaces - j) + " personnes sur le site " + n);
-				nbPlaces = j;
+				tSite[n].arret.emmener(this);
 				
-				// Simulation de l'attente de la navette a l'arret.
+				// Simulation du temps de déplacement de la navette. (d'un site n au site (n+1).)
 				try {
-					sleep(500);
-				} catch (Exception e) {}
-				
-				// Simulation du temps de deplacement de la navette.
-				try {
-					sleep(300);
+					sleep(100);
 				} catch (Exception e) {}
 			}
 			
 			else
 			{
-				int i = tSite[n].arret.deposer(nbPlaces);
-				nbPlaces = Festival.navetteP;
-				System.out.println("La navette " + nNavette + " a depose " + i + " personnes sur le site " + n);
+				tSite[n].arret.deposer(this);				
 				
-				// Simulation de l'attente de la navette a l'arret.
+				// Simulation du temps de déplacement de la navette (du dernier site au premier site.)
 				try {
-					sleep(500);
-				} catch (Exception e) {}
-				
-				// Simulation du temps de deplacement de la navette.
-				try {
-					sleep(n*300);
+					sleep(n*100);
 				} catch (Exception e) {}
 			}
 			n = (n+1)%(Festival.nSites);
+			
+			// Simulation de l'attente de la navette à l'arrêt.
+			try {
+				sleep(500);
+			} catch (Exception e) {}
 		}
 	}
 	

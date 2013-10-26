@@ -3,7 +3,7 @@ package festival;
 /**
  * 
  * @author NATTA & COAVOUX
- * Classe principale ou le programme est lance.
+ * Classe principale où le programme est lancé.
  */
 public class Festival {
 	// Le nombre de sites.
@@ -22,7 +22,7 @@ public class Festival {
 	
 	/**
 	 * Creer un nouveau festivalier. 
-	 * @return true si le festivalier a bien ete cree, false sinon.
+	 * @return true si le festivalier a bien été créé, false sinon.
 	 */
 	private boolean nouveauFest() {
 		Site depart;
@@ -42,21 +42,22 @@ public class Festival {
 	Festival() {
 		int i;
 	
-		// Creer les sites.
+		// Créer les sites.
 		for(i = 0; i < nSites; i++)
 			sites[i] = new Site(i);
 		
-		// Creer les festivaliers.
+		// Créer les navettes.
+		for(i = 0; i < nSites; i++) {
+			navettes[i] = new Navette(navetteP, i, sites);
+			navettes[i].setDaemon(true);
+			navettes[i].start();
+		}
+		
+		// Créer les festivaliers.
 		while(nouveauFest());
 		for(i = 0; i < nFest; i++)
 			fest[i].start();
-	
-		// Creer les navettes.
-		for(i = 0; i < nSites; i++) {
-			navettes[i] = new Navette(navetteP, i, sites);
-			//navettes[i].setDaemon(true);
-			navettes[i].start();
-		}
+
 	}
 	
 	public static void main(String[] args) {

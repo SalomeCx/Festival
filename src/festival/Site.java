@@ -6,11 +6,11 @@ package festival;
  *
  */
 public class Site {
-	// Le guichet lie au site.
+	// Le guichet lié au site.
 	public Guichet guichet;
-	// L'arret du site.
+	// L'arrêt du site.
 	public Arret arret;
-	// Le numero du site (son identifiant).
+	// Le numéro du site (son identifiant).
 	public int nSite;
 	
 	public Site(int n)
