@@ -17,8 +17,8 @@ public class Festivalier extends Thread {
 	}
 	
 	public void run() {
-
 		depart.guichet.prendrePlace();
+		
 		// Simuler le temps de prendre une place
 		try {
 			sleep(100);
@@ -26,7 +26,7 @@ public class Festivalier extends Thread {
 	
 		if (depart.nSite != (Festival.nSites - 1)) {
 			depart.arret.attendreNavette();
-		}		
+		}
 	}
 
 }

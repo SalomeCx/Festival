@@ -55,8 +55,9 @@ public class Festival {
 		
 		// Créer les festivaliers.
 		while(nouveauFest());
-		for(i = 0; i < nFest; i++)
+		for(i = 0; i < nFest; i++) {
 			fest[i].start();
+		}
 
 	}
 	

@@ -19,6 +19,16 @@ public class Navette extends Thread{
 		this.tSite = t;
 	}
 	
+	public synchronized void deposer() {
+		System.out.println("La navette " + nNavette + " a depose " + (Festival.navetteP - nbPlaces) + " personnes sur le site du festival");
+		while (nbPlaces != Festival.navetteP) {
+			nbPlaces++;
+			try {
+				notify();
+			} catch (Exception e) {}
+		}
+	}
+	
 	public void run()
 	{
 		// Chaque navette commence à un site aléatoire.
@@ -37,7 +47,7 @@ public class Navette extends Thread{
 			
 			else
 			{
-				tSite[n].arret.deposer(this);				
+				this.deposer();				
 				
 				// Simulation du temps de déplacement de la navette (du dernier site au premier site.)
 				try {
